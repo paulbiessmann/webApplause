@@ -32,3 +32,6 @@ if you get error messages, maybe you have to install these packages first:
 
 If bridge.js is running, open your OSC receiver like the given Max-Patch. 
 The OSC-port to receive in Max is default on 3334. You can change it in the performer.html
+
+## References
+bridge.js copied from https://github.com/automata/osc-web
