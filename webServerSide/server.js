@@ -1,5 +1,7 @@
+// Paul Biessmann - 30-March-2021
 // Based off of Shawn Van Every's Live Web
 // http://itp.nyu.edu/~sve204/liveweb_fall2013/week3.html
+// and Daniel Shiffman https://shiffman.net/a2z/server-node/ 
 
 // Using express: http://expressjs.com/
 var express = require('express');
@@ -24,7 +26,6 @@ function listen() {
 
 app.use(express.static('public'));
 
-
 // WebSocket Portion
 // WebSockets work with the HTTP server
 var io = require('socket.io')(server);
@@ -46,7 +47,6 @@ io.sockets.on('connection',
             numPerformer++;
         }
     })
-
 
     // When this user emits, client side: socket.emit('otherevent',some data);
     socket.on('applause', function(value) {
@@ -73,10 +73,8 @@ io.sockets.on('connection',
 
         // This is a way to send to everyone including sender
         // io.sockets.emit('message', "this goes to everyone");
-
       }
     );
-
 
     socket.on('disconnect', function() {
         console.log("Client has disconnected");
@@ -89,8 +87,6 @@ io.sockets.on('connection',
 
   }
 );
-
-
 
 function getMean(valueDict){
     var mean = 0;
