@@ -1,7 +1,7 @@
 // Paul Biessmann - 30-March-2021
 // Based off of Shawn Van Every's Live Web
 // http://itp.nyu.edu/~sve204/liveweb_fall2013/week3.html
-// and Daniel Shiffman https://shiffman.net/a2z/server-node/ 
+// and Daniel Shiffman https://shiffman.net/a2z/server-node/
 
 // Using express: http://expressjs.com/
 var express = require('express');
@@ -70,6 +70,8 @@ io.sockets.on('connection',
         // Send it to all other clients
         //socket.broadcast.emit('applauseRcv', mean);
         socket.broadcast.to('roomPerformer').emit('applauseRcv', mean);
+
+//ToDO Also send number of Clients and number of "active" Clients (threshold for applaus value)
 
         // This is a way to send to everyone including sender
         // io.sockets.emit('message', "this goes to everyone");
