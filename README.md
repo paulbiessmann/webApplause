@@ -17,6 +17,14 @@ A performer opens instead the page
 and receives the mean of all incoming applause. 
 To route this data further to a OSC-device (eg Max4Live), see following point. 
 
+## requirements
+
+	node.js
+Then run in the project folder:
+
+	npm install express 
+	npm install socket.io 
+
 # performerSide
 A performer needs to download & install node.js 
 https://nodejs.org/en/download/
