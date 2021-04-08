@@ -18,12 +18,16 @@ and receives the mean of all incoming applause.
 To route this data further to a OSC-device (eg Max4Live), see following point. 
 
 ## requirements
-
-	node.js
-Then run in the project folder:
+Download and install [(node.js)](https://nodejs.org/en/download/)
+	
+Then go to the project folder in the terminal and run:
 
 	npm install express 
 	npm install socket.io 
+	
+To run the app, type:
+	
+	node server.js
 
 # performerSide
 A performer needs to download & install node.js 
