@@ -28,6 +28,17 @@ Then go to the project folder in the terminal and run:
 To run the app, type:
 	
 	node server.js
+	
+Note that the address of the server has to be changed in /public/sketch.js and /public/performer.js
+
+	change address in line 11:
+   	socket = io.connect('http://localhost:3000');
+	
+to 	
+	
+	socket = io.connect('http://myServerAddress:3000');
+	
+Also make sure the port 3000 can be used on the server. Otherwise change the port. 
 
 # performerSide
 A performer needs to download & install node.js 
