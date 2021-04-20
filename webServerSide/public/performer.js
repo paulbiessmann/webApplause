@@ -10,7 +10,9 @@ let input;
 function setup() {
   createCanvas(windowWidth, windowHeight);
   // connect to webserver, get audience data:
-  socket = io.connect('http://localhost:3000');
+  let url = 'https://oper.digital';
+  socket = io.connect(url, {path: "/applause/socket.io"});
+  console.log("perf",url);
   // say "I'm a performer"
   socket.emit('performer', 1);
 
@@ -40,7 +42,6 @@ function setup() {
         );
 
     });
-
 
 
     input = createInput('');

@@ -4,11 +4,12 @@ let mouseVal = 0;
 var socket;
 let valueRcv = 0;
 let permissionGranted = false;
-let mic;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  socket = io.connect('http://localhost:3000');
+  let url = 'https://oper.digital';
+  console.log("connecting",url);
+  socket = io.connect(url, {path: "/applause/socket.io"});
 
 
   if (typeof(DeviceOrientationEvent) !== 'undefined' && typeof(DeviceOrientationEvent.requestPermission) === 'function'){
@@ -30,8 +31,6 @@ function setup() {
     permissionGranted = true;
   }
 
-  mic = new p5.AudioIn();
-  mic.start();
 }
 
 function requestAccess() {
@@ -51,22 +50,14 @@ function requestAccess() {
 function draw() {
     background(255-value, value, 0);
 
-    let vol = mic.getLevel();
-    value = value + (10*vol);
-    if (value > 255) {
-          value = 255;
-    }
-
     // display variables
     fill(0);
     textSize(25);
     text("Shake Me!", 15, 50);
     text("Click Me! ", 15, 80);
-    text("Scream at Me!", 15, 110);
-    text("Vol: " + vol, 15, 130);
 
-    textSize(15);
-    text("Permission granted iOS " + permissionGranted, 15, 550);
+    // textSize(15);
+    // text("Permission granted iOS " + permissionGranted, 15, 550);
 
     textSize(25);
     text("Applause-O-Meter: " + int(100*value/255) + " %", 5, 450);
