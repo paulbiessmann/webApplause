@@ -27,19 +27,18 @@ function setup() {
 }
 
 function draw() {
-    background(0, 255, 0);
+  background(0, 255, 0);
 
-    let meter = value * 400 / 255;
+  let meter = value * 400 / 255;
 
-    fill(255,0,0);
-    noStroke();
-    rect(20, 440-meter, 12, meter);
-    triangle(20, 440-meter, 10, 35, 10, 45 );
-    text("Applaus", 5, 460);
-    for (let i = 0; i <= 10; i ++) {
+  fill(255,0,0);
+  noStroke();
+  rect(20, 440-meter, 12, meter);
+  triangle(20, 440-meter, 10, 435-meter, 10, 445-meter );
+  text("Applaus", 5, 460);
+  for (let i = 0; i <= 10; i ++) {
     rect(30, 439-(i*40), 5, 1);
     text(i*10 + " %", 39, 444-(i*40));
-
   }
 
 }
