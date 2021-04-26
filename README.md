@@ -55,12 +55,6 @@ and run the script with
     node bridge.js
 
 
-if you get error messages, maybe you have to install these packages first: 
-
-    npm install socket.io
-    npm install node-osc
-
-
 If bridge.js is running, open your OSC receiver like the given Max-Patch. 
 The OSC-port to receive in Max is default on 3334. You can change it in the performer.html
 
