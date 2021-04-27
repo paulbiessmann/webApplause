@@ -71,13 +71,13 @@ function draw() {
     }
 
     if (value > 2){
-      value = value - 1;
+      value = value - 5;
     }
 
 }
 
 function deviceShaken() {
-  value = value + 3;
+  value = value + 4.5;
   if (value > 255) {
     value = 255;
   }

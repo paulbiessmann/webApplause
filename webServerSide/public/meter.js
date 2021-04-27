@@ -32,11 +32,15 @@ function draw() {
   let meter = value * 400 / 255;
 
   fill(255,0,0);
-  noStroke();
+  //stroke();
+  textSize(14);
   rect(20, 440-meter, 12, meter);
   triangle(20, 440-meter, 10, 435-meter, 10, 445-meter );
+  strokeWeight(2);
+  stroke(51);
   text("Applaus", 5, 460);
   for (let i = 0; i <= 10; i ++) {
+    textSize(12);
     rect(30, 439-(i*40), 5, 1);
     text(i*10 + " %", 39, 444-(i*40));
   }
