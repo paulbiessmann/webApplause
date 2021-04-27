@@ -70,7 +70,7 @@ function draw() {
       socket.emit('applause',value);
     }
 
-    if (value > 2){
+    if (value > 5){
       value = value - 5;
     }
 
