@@ -17,7 +17,7 @@ function setup() {
     DeviceOrientationEvent.requestPermission()
       .catch(() => {
           //show permission dialog only first time
-          let button = createButton("click to allow acces to sensors");
+          let button = createButton("click to access sensors");
           button.style("font-size", "24px");
           button.center();
           button.mousePressed( requestAccess );
