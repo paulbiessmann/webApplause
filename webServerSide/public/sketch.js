@@ -1,3 +1,5 @@
+// Paul Biessmann - 30-March-2021
+// for oper.digital
 let value = 0;
 let button;
 let mouseVal = 0;

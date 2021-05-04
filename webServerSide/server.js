@@ -12,6 +12,7 @@ var mean;
 var valueDict = {};
 var numPerformer = 0;
 var numClients = 0;
+var activeClients = 0;
 
 // Set up the server
 // process.env.PORT is related to deploying on heroku
@@ -54,24 +55,31 @@ io.sockets.on('connection',
         valueDict[socket.id] = value;
         mean = getMean(valueDict);
 
-        numClients = io.engine.clientsCount - numPerformer;
+        //numClients = io.engine.clientsCount - numPerformer;
+        numClients = Object.keys(valueDict).length;
+        cntClients = io.engine.clientsCount - numPerformer;
         console.log("ClientsNum "+ numClients);
         console.log("Num Perfomer: " + numPerformer);
+        console.log("cntClients: " + cntClients);
 
+        activeClients = 0;
         for (var key in valueDict){
             var value = valueDict[key];
             console.log(key + " " + value );
+            if (value > 10){
+                activeClients++;
+            }
         }
 
-        // Data comes in as whatever was sent, including objects
-        // console.log("client " + socket.id + " value "+ value);
+        console.log("activeClients: " + activeClients);
         console.log("mean "+ mean);
 
         // Send it to all other clients
         //socket.broadcast.emit('applauseRcv', mean);
         socket.broadcast.to('roomPerformer').emit('applauseRcv', mean);
+        socket.broadcast.to('roomPerformer').emit('numClientsRcv', numClients);
+        socket.broadcast.to('roomPerformer').emit('activeClientsRcv', activeClients);
 
-//ToDO Also send number of Clients and number of "active" Clients (threshold for applaus value)
 
         // This is a way to send to everyone including sender
         // io.sockets.emit('message', "this goes to everyone");

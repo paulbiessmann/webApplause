@@ -6,6 +6,12 @@ var valueRcv = -1;
 var socketOsc;
 var port = 3334;
 let input;
+var numClientsRcv = -1;
+var numClients = -1;
+var activeClients = -1;
+var activeClientsRcv = -1;
+var maxClients = 0;
+var maxActive = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -13,6 +19,7 @@ function setup() {
   let url = 'https://oper.digital';
   socket = io.connect(url, {path: "/applause/socket.io"});
   console.log("perf",url);
+
   // say "I'm a performer"
   socket.emit('performer', 1);
 
@@ -21,6 +28,24 @@ function setup() {
       console.log("Got: " + valueRcv);
       value = valueRcv;
     }
+  );
+
+  socket.on('numClientsRcv',
+    function(numClientsRcv) {
+      numClients = numClientsRcv;
+      if (numClients > maxClients){
+        maxClients = numClients;
+      }
+   }
+  );
+
+  socket.on('activeClientsRcv',
+    function(activeClientsRcv) {
+      activeClients = activeClientsRcv;
+      if(activeClients > maxActive){
+        maxActive = activeClients;
+      }
+   }
   );
 
   // connect to local OSC server on the performer machines:
@@ -92,12 +117,14 @@ function draw() {
         socketOsc.emit('message', '/applause ' + int(value) );
     }
 
-
       // display variables
     fill(255);
     textSize(25);
     text("Performer", 15, 50);
     text("udp port: " + port, 15, 80 );
+    textSize(20);
+    text("clients:         " + numClients + "            active: " + activeClients, 15, 390);
+    text("maxClients: " + maxClients + "      maxActive: " + maxActive, 15, 410);
     textSize(20);
     text("Applaus empfangen: " + int(100*value/255) + " %", 5, 450);
     textSize(48);
